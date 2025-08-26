@@ -2,7 +2,7 @@
 
 ## Installation
 
-Ensure that your Node.js version is 18.0 or higher (e.g., 18.20.2). Avoid using `sudo` for the installation. If you encounter permission issues with npm, refer to [How to fix npm throwing error without sudo](https://stackoverflow.com/questions/16151018/how-to-fix-npm-throwing-error-without-sudo).
+Ensure that your Node.js version is 22.0 or higher (e.g., 22.11.0). _Note: Older versions ≥16.0.0 may also work._ Avoid using `sudo` for the installation. If you encounter permission issues with npm, refer to [How to fix npm throwing error without sudo](https://stackoverflow.com/questions/16151018/how-to-fix-npm-throwing-error-without-sudo).
 
 ```bash
 npm install pake-cli -g
@@ -13,7 +13,6 @@ npm install pake-cli -g
 
 - **CRITICAL**: Consult [Tauri prerequisites](https://tauri.app/start/prerequisites/) before proceeding.
 - For Windows users (ensure that `Win10 SDK (10.0.19041.0)` and `Visual Studio build tool 2022 (>=17.2)` are installed), additional installations are required:
-
   1. Microsoft Visual C++ 2015-2022 Redistributable (x64)
   2. Microsoft Visual C++ 2015-2022 Redistributable (x86)
   3. Microsoft Visual C++ 2012 Redistributable (x86) (optional)
@@ -48,6 +47,8 @@ pake [url] [options]
 
 The packaged application will be located in the current working directory by default. The first packaging might take some time due to environment configuration. Please be patient.
 
+> **macOS Output**: On macOS, Pake creates DMG installers by default. To create `.app` bundles for testing (to avoid user interaction), set the environment variable `PAKE_CREATE_APP=1`.
+>
 > **Note**: Packaging requires the Rust environment. If Rust is not installed, you will be prompted for installation confirmation. In case of installation failure or timeout, you can [install it manually](https://www.rust-lang.org/tools/install).
 
 ### [url]
@@ -62,8 +63,17 @@ Various options are available for customization. You can pass corresponding argu
 
 Specify the application name. If not provided, you will be prompted to enter it. It is recommended to use English.
 
+**Note**: Also supports multiple words with automatic platform-specific handling:
+
+- **Windows/macOS**: Preserves spaces and case (e.g., `"Google Translate"`)
+- **Linux**: Converts to lowercase with hyphens (e.g., `"google-translate"`)
+
 ```shell
 --name <string>
+--name MyApp
+
+# Multiple words (if needed):
+--name "Google Translate"
 ```
 
 #### [icon]
@@ -208,6 +218,34 @@ Specify the system tray icon. This is only effective when the system tray is ena
 --system-tray-icon <path>
 ```
 
+#### [hide-on-close]
+
+Hide the window instead of exiting when clicking the close button. Default is `true`. When enabled, the application will be minimized to the system tray (if available) or hidden when the close button is clicked, rather than actually closing the application.
+
+```shell
+--hide-on-close
+```
+
+#### [title]
+
+Set the window title bar text. If not specified, the window title will be empty.
+
+```shell
+--title <string>
+
+# Examples:
+--title "My Application"
+--title "Google Translate"
+```
+
+#### [incognito]
+
+Launch the application in incognito/private browsing mode. Default is `false`. When enabled, the webview will run in private mode, which means it won't store cookies, local storage, or browsing history. This is useful for privacy-sensitive applications.
+
+```shell
+--incognito
+```
+
 #### [installer-language]
 
 Set the Windows Installer language. Options include `zh-CN`, `ja-JP`, More at [Tauri Document](https://tauri.app/distribute/windows-installer/#internationalization). Default is `en-US`.
@@ -228,16 +266,26 @@ Enable recursive copying. When the URL is a local file path, enabling this optio
 
 Using `inject`, you can inject local absolute and relative path `css` and `js` files into the page you specify the `url` to customize it. For example, an adblock script that can be applied to any web page, or a `css` that optimizes the `UI` of a page, you can write it once to customize it. would only need to write the `app` once to generalize it to any other page.
 
+Supports both comma-separated and multiple option formats:
+
 ```shell
+# Comma-separated (recommended)
 --inject ./tools/style.css,./tools/hotkey.js
+
+# Multiple options
+--inject ./tools/style.css --inject ./tools/hotkey.js
+
+# Single file
+--inject ./tools/style.css
 ```
 
 #### [proxy-url]
 
-If you need to proxy requests for some reason, you can set the proxy address using the `proxy-url` option.
+Set proxy server for all network requests. Supports HTTP, HTTPS, and SOCKS5. Available on Windows and Linux. On macOS, requires macOS 14+.
 
 ```shell
---proxy-url <url>
+--proxy-url http://127.0.0.1:7890
+--proxy-url socks5://127.0.0.1:7891
 ```
 
 #### [debug]
@@ -259,8 +307,8 @@ The `DEFAULT_DEV_PAKE_OPTIONS` configuration in `bin/defaults.ts` can be modifie
 ```typescript
 export const DEFAULT_DEV_PAKE_OPTIONS: PakeCliOptions & { url: string } = {
   ...DEFAULT_PAKE_OPTIONS,
-  url: 'https://weread.qq.com',
-  name: 'Weread',
+  url: "https://weekly.tw93.fun/",
+  name: "Weekly",
 };
 ```
 

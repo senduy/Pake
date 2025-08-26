@@ -46,7 +46,7 @@
         <td><img src=https://raw.githubusercontent.com/tw93/static/main/pake/WeRead.jpg width=600/></td>
         <td><img src=https://raw.githubusercontent.com/tw93/static/main/pake/Twitter.jpg width=600/></td>
     </tr>
-     <tr>
+    <tr>
         <td>Grok
             <a href="https://github.com/tw93/Pake/releases/latest/download/Grok.dmg">Mac</a>
             <a href="https://github.com/tw93/Pake/releases/latest/download/Grok_x64.msi">Windows</a>
@@ -111,7 +111,7 @@
         <td><img src=https://raw.githubusercontent.com/tw93/static/main/pake/ProgramMusic.jpg width=600/></td>
     </tr>
     <tr>
-         <td>Excalidraw
+        <td>Excalidraw
             <a href="https://github.com/tw93/Pake/releases/latest/download/Excalidraw.dmg">Mac</a>
             <a href="https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x64.msi">Windows</a>
             <a href="https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x86_64.deb">Linux</a>
@@ -178,7 +178,7 @@ pake https://weekly.tw93.fun --name Weekly --hide-title-bar
 
 ## 定制开发
 
-开始前请确保电脑已经安装了 Rust `>=1.63` 和 Node `>=16 如 16.18.1` 的环境，此外需参考 [Tauri 文档](https://tauri.app/start/prerequisites/) 快速配置好环境才可以开始使用，假如你太不懂，使用上面的命令行打包会更加合适。
+开始前请确保电脑已经安装了 Rust `>=1.89` 和 Node `>=22 如 22.11.0` 的环境，_注意：较旧的版本（Rust ≥1.78，Node ≥16）也可能可以工作，但推荐使用最新稳定版本。_ 此外需参考 [Tauri 文档](https://tauri.app/start/prerequisites/) 快速配置好环境才可以开始使用，假如你太不懂，使用上面的命令行打包会更加合适。
 
 ```sh
 # 安装依赖
@@ -196,7 +196,7 @@ npm run build
 
 1. 代码结构可参考 [文档](https://github.com/tw93/Pake/wiki/Pake-%E7%9A%84%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E)，便于你在开发前了解更多。
 2. 修改 src-tauri 目录下 `pake.json` 中的 `url` 和 `productName` 字段，需同步修改下 `tauri.config.json` 中的 `domain` 字段，以及 `tauri.xxx.conf.json` 中的 `icon` 和 `identifier` 字段，其中 `icon` 可以从 icons 目录选择一个，也可以去 [macOSicons](https://macosicons.com/#/) 下载符合效果的。
-3. 关于窗口属性设置，可以在 `pake.json` 修改 windows 属性对应的 `width/height`，fullscreen 是否全屏，resizable 是否可以调整大小，假如想适配 Mac 沉浸式头部，可以将 hideTitleBar 设置成 `true`，找到 Header 元素加一个 padding-top 样式即可，不想适配改成 `false` 也行。
+3. 关于窗口属性设置，可以在 `pake.json` 修改 windows 属性对应的 `width/height`，fullscreen 是否全屏，resizable 是否可以调整大小，hide_on_close 关闭时是否隐藏窗口而不是退出，假如想适配 Mac 沉浸式头部，可以将 hideTitleBar 设置成 `true`，找到 Header 元素加一个 padding-top 样式即可，不想适配改成 `false` 也行。
 4. 此外样式改写、屏蔽广告、逻辑代码注入、容器消息通信、自定义快捷键可见 [高级用法](https://github.com/tw93/Pake/wiki/Pake-%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95)。
 
 ## 开发者
@@ -205,264 +205,323 @@ Pake 的发展离不开这些 Hacker 们，一起贡献了大量能力，也欢�
 
 <!-- readme: contributors -start -->
 <table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/tw93">
-            <img src="https://avatars.githubusercontent.com/u/8736212?v=4" width="90;" alt="tw93"/>
-            <br />
-            <sub><b>Tw93</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Tlntin">
-            <img src="https://avatars.githubusercontent.com/u/28218658?v=4" width="90;" alt="Tlntin"/>
-            <br />
-            <sub><b>Tlntin</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jeasonnow">
-            <img src="https://avatars.githubusercontent.com/u/16950207?v=4" width="90;" alt="jeasonnow"/>
-            <br />
-            <sub><b>Santree</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/pan93412">
-            <img src="https://avatars.githubusercontent.com/u/28441561?v=4" width="90;" alt="pan93412"/>
-            <br />
-            <sub><b>Pan93412</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/stone-w4tch3r">
-            <img src="https://avatars.githubusercontent.com/u/100294019?v=4" width="90;" alt="stone-w4tch3r"/>
-            <br />
-            <sub><b>Данил Бизимов</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/wanghanzhen">
-            <img src="https://avatars.githubusercontent.com/u/25301012?v=4" width="90;" alt="wanghanzhen"/>
-            <br />
-            <sub><b>Volare</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/liby">
-            <img src="https://avatars.githubusercontent.com/u/38807139?v=4" width="90;" alt="liby"/>
-            <br />
-            <sub><b>Bryan Lee</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/essesoul">
-            <img src="https://avatars.githubusercontent.com/u/58624474?v=4" width="90;" alt="essesoul"/>
-            <br />
-            <sub><b>Essesoul</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/YangguangZhou">
-            <img src="https://avatars.githubusercontent.com/u/61733195?v=4" width="90;" alt="YangguangZhou"/>
-            <br />
-            <sub><b>Jerry Zhou</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/AielloChan">
-            <img src="https://avatars.githubusercontent.com/u/7900765?v=4" width="90;" alt="AielloChan"/>
-            <br />
-            <sub><b>Aiello</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/m1911star">
-            <img src="https://avatars.githubusercontent.com/u/4948120?v=4" width="90;" alt="m1911star"/>
-            <br />
-            <sub><b>Horus</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Pake-Actions">
-            <img src="https://avatars.githubusercontent.com/u/126550811?v=4" width="90;" alt="Pake-Actions"/>
-            <br />
-            <sub><b>Pake Actions</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/eltociear">
-            <img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="90;" alt="eltociear"/>
-            <br />
-            <sub><b>Ikko Eltociear Ashimine</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mattbajorek">
-            <img src="https://avatars.githubusercontent.com/u/17235301?v=4" width="90;" alt="mattbajorek"/>
-            <br />
-            <sub><b>Matt Bajorek</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/QingZ11">
-            <img src="https://avatars.githubusercontent.com/u/38887077?v=4" width="90;" alt="QingZ11"/>
-            <br />
-            <sub><b>Steam</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Tianj0o">
-            <img src="https://avatars.githubusercontent.com/u/68584284?v=4" width="90;" alt="Tianj0o"/>
-            <br />
-            <sub><b>Qitianjia</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/xinyii">
-            <img src="https://avatars.githubusercontent.com/u/17895104?v=4" width="90;" alt="xinyii"/>
-            <br />
-            <sub><b>Yi Xin</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/exposir">
-            <img src="https://avatars.githubusercontent.com/u/33340988?v=4" width="90;" alt="exposir"/>
-            <br />
-            <sub><b>孟世博</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/2nthony">
-            <img src="https://avatars.githubusercontent.com/u/19513289?v=4" width="90;" alt="2nthony"/>
-            <br />
-            <sub><b>2nthony</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ACGNnsj">
-            <img src="https://avatars.githubusercontent.com/u/22112141?v=4" width="90;" alt="ACGNnsj"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/imabutahersiddik">
-            <img src="https://avatars.githubusercontent.com/u/138387257?v=4" width="90;" alt="imabutahersiddik"/>
-            <br />
-            <sub><b>Abu Taher Siddik</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/kidylee">
-            <img src="https://avatars.githubusercontent.com/u/841310?v=4" width="90;" alt="kidylee"/>
-            <br />
-            <sub><b>An Li</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/nekomeowww">
-            <img src="https://avatars.githubusercontent.com/u/11081491?v=4" width="90;" alt="nekomeowww"/>
-            <br />
-            <sub><b>Ayaka Neko</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/turkyden">
-            <img src="https://avatars.githubusercontent.com/u/24560160?v=4" width="90;" alt="turkyden"/>
-            <br />
-            <sub><b>Dengju Deng</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Fechin">
-            <img src="https://avatars.githubusercontent.com/u/2541482?v=4" width="90;" alt="Fechin"/>
-            <br />
-            <sub><b>Fechin</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ImgBotApp">
-            <img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="90;" alt="ImgBotApp"/>
-            <br />
-            <sub><b>Imgbot</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/droid-Q">
-            <img src="https://avatars.githubusercontent.com/u/708277?v=4" width="90;" alt="droid-Q"/>
-            <br />
-            <sub><b>Jiaqi Gu</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Milo123459">
-            <img src="https://avatars.githubusercontent.com/u/50248166?v=4" width="90;" alt="Milo123459"/>
-            <br />
-            <sub><b>Milo</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/princemaple">
-            <img src="https://avatars.githubusercontent.com/u/1329716?v=4" width="90;" alt="princemaple"/>
-            <br />
-            <sub><b>Po Chen</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/geekvest">
-            <img src="https://avatars.githubusercontent.com/u/126322776?v=4" width="90;" alt="geekvest"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/houhoz">
-            <img src="https://avatars.githubusercontent.com/u/19684376?v=4" width="90;" alt="houhoz"/>
-            <br />
-            <sub><b>Hyzhao</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/lakca">
-            <img src="https://avatars.githubusercontent.com/u/16255922?v=4" width="90;" alt="lakca"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/liudonghua123">
-            <img src="https://avatars.githubusercontent.com/u/2276718?v=4" width="90;" alt="liudonghua123"/>
-            <br />
-            <sub><b>Liudonghua</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/liusishan">
-            <img src="https://avatars.githubusercontent.com/u/33129823?v=4" width="90;" alt="liusishan"/>
-            <br />
-            <sub><b>Liusishan</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/piaoyidage">
-            <img src="https://avatars.githubusercontent.com/u/5135405?v=4" width="90;" alt="piaoyidage"/>
-            <br />
-            <sub><b>Ranger</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/hetz">
-            <img src="https://avatars.githubusercontent.com/u/820141?v=4" width="90;" alt="hetz"/>
-            <br />
-            <sub><b>贺天卓</b></sub>
-        </a>
-    </td></tr>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/tw93">
+                    <img src="https://avatars.githubusercontent.com/u/8736212?v=4" width="90;" alt="tw93"/>
+                    <br />
+                    <sub><b>Tw93</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Tlntin">
+                    <img src="https://avatars.githubusercontent.com/u/28218658?v=4" width="90;" alt="Tlntin"/>
+                    <br />
+                    <sub><b>Tlntin</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/jeasonnow">
+                    <img src="https://avatars.githubusercontent.com/u/16950207?v=4" width="90;" alt="jeasonnow"/>
+                    <br />
+                    <sub><b>Santree</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/pan93412">
+                    <img src="https://avatars.githubusercontent.com/u/28441561?v=4" width="90;" alt="pan93412"/>
+                    <br />
+                    <sub><b>Pan93412</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/stone-w4tch3r">
+                    <img src="https://avatars.githubusercontent.com/u/100294019?v=4" width="90;" alt="stone-w4tch3r"/>
+                    <br />
+                    <sub><b>Данил Бизимов</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/wanghanzhen">
+                    <img src="https://avatars.githubusercontent.com/u/25301012?v=4" width="90;" alt="wanghanzhen"/>
+                    <br />
+                    <sub><b>Volare</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/liby">
+                    <img src="https://avatars.githubusercontent.com/u/38807139?v=4" width="90;" alt="liby"/>
+                    <br />
+                    <sub><b>Bryan Lee</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/essesoul">
+                    <img src="https://avatars.githubusercontent.com/u/58624474?v=4" width="90;" alt="essesoul"/>
+                    <br />
+                    <sub><b>Essesoul</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/YangguangZhou">
+                    <img src="https://avatars.githubusercontent.com/u/61733195?v=4" width="90;" alt="YangguangZhou"/>
+                    <br />
+                    <sub><b>Jerry Zhou</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/AielloChan">
+                    <img src="https://avatars.githubusercontent.com/u/7900765?v=4" width="90;" alt="AielloChan"/>
+                    <br />
+                    <sub><b>Aiello</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/m1911star">
+                    <img src="https://avatars.githubusercontent.com/u/4948120?v=4" width="90;" alt="m1911star"/>
+                    <br />
+                    <sub><b>Horus</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Pake-Actions">
+                    <img src="https://avatars.githubusercontent.com/u/126550811?v=4" width="90;" alt="Pake-Actions"/>
+                    <br />
+                    <sub><b>Pake Actions</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/GoodbyeNJN">
+                    <img src="https://avatars.githubusercontent.com/u/6856639?v=4" width="90;" alt="GoodbyeNJN"/>
+                    <br />
+                    <sub><b>GoodbyeNJN</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kittizz">
+                    <img src="https://avatars.githubusercontent.com/u/62899732?v=4" width="90;" alt="kittizz"/>
+                    <br />
+                    <sub><b>Kittizz</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/mattbajorek">
+                    <img src="https://avatars.githubusercontent.com/u/17235301?v=4" width="90;" alt="mattbajorek"/>
+                    <br />
+                    <sub><b>Matt Bajorek</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/vaddisrinivas">
+                    <img src="https://avatars.githubusercontent.com/u/38348871?v=4" width="90;" alt="vaddisrinivas"/>
+                    <br />
+                    <sub><b>Srinivas Vaddi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/QingZ11">
+                    <img src="https://avatars.githubusercontent.com/u/38887077?v=4" width="90;" alt="QingZ11"/>
+                    <br />
+                    <sub><b>Steam</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Tianj0o">
+                    <img src="https://avatars.githubusercontent.com/u/68584284?v=4" width="90;" alt="Tianj0o"/>
+                    <br />
+                    <sub><b>Qitianjia</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/xinyii">
+                    <img src="https://avatars.githubusercontent.com/u/17895104?v=4" width="90;" alt="xinyii"/>
+                    <br />
+                    <sub><b>Yi Xin</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/g1eny0ung">
+                    <img src="https://avatars.githubusercontent.com/u/15034155?v=4" width="90;" alt="g1eny0ung"/>
+                    <br />
+                    <sub><b>Yue Yang</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lkieryan">
+                    <img src="https://avatars.githubusercontent.com/u/187804088?v=4" width="90;" alt="lkieryan"/>
+                    <br />
+                    <sub><b>Kieran</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/exposir">
+                    <img src="https://avatars.githubusercontent.com/u/33340988?v=4" width="90;" alt="exposir"/>
+                    <br />
+                    <sub><b>孟世博</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/2nthony">
+                    <img src="https://avatars.githubusercontent.com/u/19513289?v=4" width="90;" alt="2nthony"/>
+                    <br />
+                    <sub><b>2nthony</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ACGNnsj">
+                    <img src="https://avatars.githubusercontent.com/u/22112141?v=4" width="90;" alt="ACGNnsj"/>
+                    <br />
+                    <sub><b>Null</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/imabutahersiddik">
+                    <img src="https://avatars.githubusercontent.com/u/138387257?v=4" width="90;" alt="imabutahersiddik"/>
+                    <br />
+                    <sub><b>Abu Taher Siddik</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kidylee">
+                    <img src="https://avatars.githubusercontent.com/u/841310?v=4" width="90;" alt="kidylee"/>
+                    <br />
+                    <sub><b>An Li</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/nekomeowww">
+                    <img src="https://avatars.githubusercontent.com/u/11081491?v=4" width="90;" alt="nekomeowww"/>
+                    <br />
+                    <sub><b>Ayaka Neko</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/turkyden">
+                    <img src="https://avatars.githubusercontent.com/u/24560160?v=4" width="90;" alt="turkyden"/>
+                    <br />
+                    <sub><b>Dengju Deng</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/fvn-elmy">
+                    <img src="https://avatars.githubusercontent.com/u/71275745?v=4" width="90;" alt="fvn-elmy"/>
+                    <br />
+                    <sub><b>Fabien</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Fechin">
+                    <img src="https://avatars.githubusercontent.com/u/2541482?v=4" width="90;" alt="Fechin"/>
+                    <br />
+                    <sub><b>Fechin</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ImgBotApp">
+                    <img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="90;" alt="ImgBotApp"/>
+                    <br />
+                    <sub><b>Imgbot</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/droid-Q">
+                    <img src="https://avatars.githubusercontent.com/u/708277?v=4" width="90;" alt="droid-Q"/>
+                    <br />
+                    <sub><b>Jiaqi Gu</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Milo123459">
+                    <img src="https://avatars.githubusercontent.com/u/50248166?v=4" width="90;" alt="Milo123459"/>
+                    <br />
+                    <sub><b>Milo</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/princemaple">
+                    <img src="https://avatars.githubusercontent.com/u/1329716?v=4" width="90;" alt="princemaple"/>
+                    <br />
+                    <sub><b>Po Chen</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/beautifulrem">
+                    <img src="https://avatars.githubusercontent.com/u/98527099?v=4" width="90;" alt="beautifulrem"/>
+                    <br />
+                    <sub><b>Xie Ruiqi</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/bocanhcam">
+                    <img src="https://avatars.githubusercontent.com/u/35592955?v=4" width="90;" alt="bocanhcam"/>
+                    <br />
+                    <sub><b>bocanhcam</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/geekvest">
+                    <img src="https://avatars.githubusercontent.com/u/126322776?v=4" width="90;" alt="geekvest"/>
+                    <br />
+                    <sub><b>Null</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/houhoz">
+                    <img src="https://avatars.githubusercontent.com/u/19684376?v=4" width="90;" alt="houhoz"/>
+                    <br />
+                    <sub><b>Hyzhao</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lakca">
+                    <img src="https://avatars.githubusercontent.com/u/16255922?v=4" width="90;" alt="lakca"/>
+                    <br />
+                    <sub><b>Null</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/liudonghua123">
+                    <img src="https://avatars.githubusercontent.com/u/2276718?v=4" width="90;" alt="liudonghua123"/>
+                    <br />
+                    <sub><b>Liudonghua</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/liusishan">
+                    <img src="https://avatars.githubusercontent.com/u/33129823?v=4" width="90;" alt="liusishan"/>
+                    <br />
+                    <sub><b>Liusishan</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/piaoyidage">
+                    <img src="https://avatars.githubusercontent.com/u/5135405?v=4" width="90;" alt="piaoyidage"/>
+                    <br />
+                    <sub><b>Ranger</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/hetz">
+                    <img src="https://avatars.githubusercontent.com/u/820141?v=4" width="90;" alt="hetz"/>
+                    <br />
+                    <sub><b>贺天卓</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: contributors -end -->
 

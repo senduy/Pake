@@ -2,7 +2,7 @@
 
 ## 安装
 
-请确保您的 Node.js 版本为 18 或更高版本（例如 18.7）。请避免使用 `sudo` 进行安装。如果 npm 报告权限问题，请参考 [如何在不使用 sudo 的情况下修复 npm 报错](https://stackoverflow.com/questions/16151018/how-to-fix-npm-throwing-error-without-sudo)。
+请确保您的 Node.js 版本为 22 或更高版本（例如 22.11.0）。_注意：较旧的版本 ≥16.0.0 也可能可以工作。_ 请避免使用 `sudo` 进行安装。如果 npm 报告权限问题，请参考 [如何在不使用 sudo 的情况下修复 npm 报错](https://stackoverflow.com/questions/16151018/how-to-fix-npm-throwing-error-without-sudo)。
 
 ```bash
 npm install pake-cli -g
@@ -13,7 +13,6 @@ npm install pake-cli -g
 
 - **非常重要**：请参阅 Tauri 的 [依赖项指南](https://tauri.app/start/prerequisites/)。
 - 对于 Windows 用户，请确保至少安装了 `Win10 SDK(10.0.19041.0)` 和 `Visual Studio Build Tools 2022（版本 17.2 或更高）`，此外还需要安装以下组件：
-
   1. Microsoft Visual C++ 2015-2022 Redistributable (x64)
   2. Microsoft Visual C++ 2015-2022 Redistributable (x86)
   3. Microsoft Visual C++ 2012 Redistributable (x86)（可选）
@@ -24,7 +23,7 @@ npm install pake-cli -g
 
   ```bash
   sudo apt install libdbus-1-dev \
-      libsoup3.0-dev \
+      libsoup-3.0-dev \
       libjavascriptcoregtk-4.1-dev \
       libwebkit2gtk-4.1-dev \
       build-essential \
@@ -48,6 +47,8 @@ pake [url] [options]
 
 应用程序的打包结果将默认保存在当前工作目录。由于首次打包需要配置环境，这可能需要一些时间，请耐心等待。
 
+> **macOS 输出**：在 macOS 上，Pake 默认创建 DMG 安装程序。如需创建 `.app` 包进行测试（避免用户交互），请设置环境变量 `PAKE_CREATE_APP=1`。
+>
 > **注意**：打包过程需要使用 `Rust` 环境。如果您没有安装 `Rust`，系统会提示您是否要安装。如果遇到安装失败或超时的问题，您可以 [手动安装](https://www.rust-lang.org/tools/install)。
 
 ### [url]
@@ -60,10 +61,19 @@ pake [url] [options]
 
 #### [name]
 
-指定应用程序的名称，如果在输入时未指定，系统会提示您输入，建议使用单个英文名称，不要出现下划线或者中文。
+指定应用程序的名称，如果未指定，系统会提示您输入，建议使用英文单词。
+
+**注意**: 支持带空格的名称，会自动处理不同平台的命名规范:
+
+- **Windows/macOS**: 保持空格和大小写（如 `"Google Translate"`）
+- **Linux**: 自动转换为小写并用连字符连接（如 `"google-translate"`）
 
 ```shell
 --name <string>
+--name MyApp
+
+# 带空格的名称:
+--name "Google Translate"
 ```
 
 #### [icon]
@@ -208,6 +218,34 @@ pake [url] [options]
 --system-tray-icon <path>
 ```
 
+#### [hide-on-close]
+
+设置点击关闭按钮时隐藏窗口而不是退出应用。默认为 `true`。启用后，点击关闭按钮时应用会最小化到系统托盘（如果可用）或隐藏窗口，而不是直接关闭应用程序。
+
+```shell
+--hide-on-close
+```
+
+#### [incognito]
+
+以隐私/隐身浏览模式启动应用程序。默认为 `false`。启用后，webview 将在隐私模式下运行，这意味着它不会存储 cookie、本地存储或浏览历史记录。这对于注重隐私的应用程序很有用。
+
+```shell
+--incognito
+```
+
+#### [title]
+
+设置窗口标题栏文本。如果未指定，窗口标题将为空。
+
+```shell
+--title <string>
+
+# 示例：
+--title "我的应用"
+--title "音乐播放器"
+```
+
 #### [installer-language]
 
 设置 Windows 安装包语言。支持 `zh-CN`、`ja-JP`，更多在 [Tauri 文档](https://tauri.app/distribute/windows-installer/#internationalization)。默认为 `en-US`。
@@ -228,22 +266,28 @@ pake [url] [options]
 
 #### [inject]
 
-使用 `inject` 可以通过本地的绝对、相对路径的 `css` `js` 文件注入到你所指定 `url` 的页面中，从而为
+使用 `inject` 可以通过本地的绝对、相对路径的 `css` `js` 文件注入到你所指定 `url` 的页面中，从而为其做定制化改造。举个例子：一段可以通用到任何网页的广告屏蔽脚本，或者是优化页面 `UI` 展示的 `css`，你只需要书写一次可以将其通用到任何其他网页打包的 `app`。
 
-其做定制化改造。举个例子：一段可以通用到任何网页的广告屏蔽脚本，或者是优化页面 `UI` 展的 `css`，你
-
-只需要书写一次可以将其通用到任何其他网页打包的 `app`。
+支持逗号分隔和多个选项两种格式：
 
 ```shell
+# 逗号分隔（推荐）
+--inject ./tools/style.css,./tools/hotkey.js
+
+# 多个选项
 --inject ./tools/style.css --inject ./tools/hotkey.js
+
+# 单个文件
+--inject ./tools/style.css
 ```
 
 #### [proxy-url]
 
-假如你由于某些缘故需要代理请求，你可以通过 `proxy-url` 选项来设置代理地址。
+为所有网络请求设置代理服务器。支持 HTTP、HTTPS 和 SOCKS5。在 Windows 和 Linux 上可用。在 macOS 上需要 macOS 14+。
 
 ```shell
---proxy-url <url>
+--proxy-url http://127.0.0.1:7890
+--proxy-url socks5://127.0.0.1:7891
 ```
 
 #### [debug]
@@ -265,8 +309,8 @@ pake [url] [options]
 ```typescript
 export const DEFAULT_DEV_PAKE_OPTIONS: PakeCliOptions & { url: string } = {
   ...DEFAULT_PAKE_OPTIONS,
-  url: 'https://weread.qq.com',
-  name: 'Weread',
+  url: "https://weekly.tw93.fun/",
+  name: "Weekly",
 };
 ```
 

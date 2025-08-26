@@ -6,6 +6,9 @@ export interface PakeCliOptions {
   // Application name
   name?: string;
 
+  // Window title (supports Chinese characters)
+  title?: string;
+
   // Application icon
   icon: string;
 
@@ -68,6 +71,12 @@ export interface PakeCliOptions {
 
   // Installer language, valid for Windows users, default is en-US
   installerLanguage: string;
+
+  // Hide window on close instead of exiting, default false
+  hideOnClose: boolean;
+
+  // Launch app in incognito/private mode, default false
+  incognito: boolean;
 }
 
 export interface PakeAppOptions extends PakeCliOptions {
