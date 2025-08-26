@@ -515,6 +515,13 @@ Pake の開発はこれらのハッカーたちなしにはあり得ませんで
 		</tr>
 		<tr>
             <td align="center">
+                <a href="https://github.com/senduy">
+                    <img src="https://avatars.githubusercontent.com/u/24542953?v=4" width="90;" alt="senduy"/>
+                    <br />
+                    <sub><b>senduy</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/hetz">
                     <img src="https://avatars.githubusercontent.com/u/820141?v=4" width="90;" alt="hetz"/>
                     <br />
